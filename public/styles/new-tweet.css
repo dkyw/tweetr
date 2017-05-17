@@ -10,6 +10,7 @@
 
 .new-tweet h2 {
     border-bottom: 1.5px solid black;
+    margin-top: 0;
     padding-top: .2em;
 }
 
@@ -36,7 +37,7 @@
   background-color: #00a087;
   color: white;
   display: none;
-  margin-left: 14.5em;
+  margin-left: 15.5em;
   opacity: 0.6;
   padding: .3em;
   position: absolute;
@@ -46,4 +47,5 @@
 .new-tweet .error-message p {
   margin: 0;
   padding: 0;
+  text-align: center;
 }

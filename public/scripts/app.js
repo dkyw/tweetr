@@ -28,12 +28,11 @@ function createTweetElement(tweet) {
 
 function renderTweets(tweets) {
   //clears the tweet container before appending tweets
-  // $('.tweets').empty();
+  $('#tweets-container').empty();
   for (let tweet of tweets) {
-    $('#tweets-container').append(createTweetElement(tweet))
+    $('#tweets-container').prepend(createTweetElement(tweet))
   }
 }
-
 
 
 $('form').submit(function(event) {
@@ -60,14 +59,15 @@ $('form').submit(function(event) {
       return;
   }
 
-
-
-  $.ajax({
+   $.ajax({
     data: $(this).serialize(),
     url: '/tweets',
     method: 'POST'
   }).done(function() {
     loadTweets();
+    //reset input fields
+    $('.new-tweet textarea').val('');
+    $('.new-tweet .counter').text('140');
   })
 })
 
@@ -77,10 +77,7 @@ function loadTweets() {
     url: '/tweets',
     method: 'GET'
   }).done(function(tweets) {
-    let sorted = tweets.sort(function(a ,b) {
-      return b.created_at - a.created_at
-    })
-    renderTweets(sorted);
+    renderTweets(tweets);
   })
 }
 
