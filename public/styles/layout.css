@@ -21,6 +21,9 @@ body {
   background-color: #eee;
 }
 
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
+.container {
+  background-color: white;
+  margin: 0 auto;
+  padding: 110px 0 40px 0;
+  width: 450px;
+}
