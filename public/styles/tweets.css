@@ -25,14 +25,15 @@
   margin: .4em 0 0 .4em ;
 }
 
-#tweets-container .name {
+#tweets-container h2 {
   display: inline-block;
   margin: 0 0 0 .25em;
 }
 
 #tweets-container .handle {
   display: inline-block;
-  margin: 0 0 0 9em;
+  float:right;
+  margin: 2em .5em 0 0;
 }
 
 #tweets-container .content {
