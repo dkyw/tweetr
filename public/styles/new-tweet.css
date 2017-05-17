@@ -3,6 +3,7 @@
     border-radius: 2%;
     margin: 0 auto 1em auto;
     padding: 0 .5em;
+    position: relative;
     height: 150px;
     width: 90%;
 }
@@ -29,4 +30,20 @@
 
 .new-tweet .counter.over {
   color: red;
+}
+
+.new-tweet .error-message {
+  background-color: #00a087;
+  color: white;
+  display: none;
+  margin-left: 14.5em;
+  opacity: 0.6;
+  padding: .3em;
+  position: absolute;
+  top: 0;
+}
+
+.new-tweet .error-message p {
+  margin: 0;
+  padding: 0;
 }
