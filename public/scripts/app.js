@@ -28,7 +28,7 @@ function createTweetElement(tweet) {
 
 function renderTweets(tweets) {
   //clears the tweet container before appending tweets
-  $('#tweets-container').empty();
+  //$('#tweets-container').empty();
   for (let tweet of tweets) {
     $('#tweets-container').prepend(createTweetElement(tweet))
   }
