@@ -1,0 +1,51 @@
+.new-tweet {
+    background-color: #eee;
+    border-radius: 2%;
+    margin: 0 auto 1em auto;
+    padding: 0 .5em;
+    position: relative;
+    height: 150px;
+    width: 90%;
+
+    &:hover {
+      border: 1px solid #07c;
+      box-shadow: 0 0 10px #07c;
+    }
+
+  h2 {
+    border-bottom: 1.5px solid black;
+    margin-top: 0;
+    padding-top: .2em;
+  }
+
+  textarea {
+    width: 100%;
+    margin: 1em auto 0 auto;
+  }
+
+  span {
+    float: right;
+    margin-top: .25em;
+  }
+
+  .counter.over {
+    color: red;
+  }
+
+  .error-message {
+    background-color: #00a087;
+    color: white;
+    display: none;
+    margin-left: 15.5em;
+    opacity: 0.6;
+    padding: .3em;
+    position: absolute;
+    top: 0;
+
+    p {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+  }
+}
