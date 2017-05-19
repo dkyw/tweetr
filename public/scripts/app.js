@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
 function createTweetElement(tweet) {
+  //attach 'id' data attribute to every tweet in the container
   const tweetElement = $("<article>").data('id',tweet._id).addClass("tweet");
 
   //retrieve header info
@@ -15,29 +16,35 @@ function createTweetElement(tweet) {
 
   //retrieve footer info
   const $footer = $("<footer>");
-  const $likes = $('<span class="icons likes-counter"></span>').data('likes', tweet.likes).text(tweet.likes);
   const $time = moment(tweet.created_at).fromNow();
   const $timeStamp = $("<span>").text($time).addClass("time-stamp");
-  const $heart = $('<i class="fa fa-heart like-button" aria-hidden="true" data-like="0">').addClass('icons');
-  const $retweet = $('<i class="fa fa-retweet" aria-hidden="true"></i>').addClass('icons');
-  const $flag = $('<i class="fa fa-flag" aria-hidden="true"></i>').addClass('icons')
+  const $heart = $('<i class="fa fa-heart like-button">').addClass('icons');
+  //attach 'likes' data attribute to the counter and assign value to intial value 0
+  const $likes = $('<span class="icons likes-counter"></span>').data('likes', tweet.likes).text(tweet.likes);
+  const $retweet = $('<i class="fa fa-retweet"></i>').addClass('icons');
+  const $flag = $('<i class="fa fa-flag"></i>').addClass('icons')
   $footer.append($timeStamp, $heart, $likes, $retweet, $flag)
-
+  //combine header,body and footer to create tweet article
   tweetElement.append($header, $body, $footer);
   return tweetElement;
 }
 
+//----event handler for displaying and incrementing tweets------
 $('#tweets-container').on('click', '.like-button', function(e) {
   let $heart = $(this);
+  //specifically target the counter the event click happnened on
   let $likesCounter = $heart.siblings('.likes-counter');
+
+  //retrieve the id of the tweet the event occured on to use in the url for ajax
   let $parent = $heart.parents('.tweet')
   let tweetId = $parent.data('id');
 
+  //get current number of likes and increment by one for every click event
   let currentCount = $likesCounter.data('likes');
   currentCount++;
+  //display and set the incremented count on 'likes' data attribute
   $likesCounter.text(currentCount);
   $likesCounter.data('likes', currentCount);
-
 
 
   $.ajax({
@@ -46,14 +53,15 @@ $('#tweets-container').on('click', '.like-button', function(e) {
   })
 })
 
+
 function renderTweets(tweets) {
   //clears the tweet container before appending tweets
   $('#tweets-container').empty();
+  //prepend new tweet element onto DOM
   for (let tweet of tweets) {
     $('#tweets-container').prepend(createTweetElement(tweet))
   }
 }
-
 
 $('form').submit(function(event) {
   event.preventDefault();
