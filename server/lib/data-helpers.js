@@ -16,11 +16,12 @@ module.exports = function makeDataHelpers(db) {
       db.collection("tweeter").find().toArray(callback);
     },
 
+    //find id and pass onto updateLikes function
     retrieveTweet: function(id,callback) {
       db.collection("tweeter").findOne({_id:ObjectID(id)},callback)
     },
 
-
+    //retrive the id of the tweet and increase likes on Mongo
     updateLikes: function(id, callback) {
       this.retrieveTweet(id, function(err, tweet) {
         if (err) {
@@ -37,7 +38,3 @@ module.exports = function makeDataHelpers(db) {
 
   }
 }
-
-
-
-// db.tweeter.remove({"user.name":"Hallie Summers"})
