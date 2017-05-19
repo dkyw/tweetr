@@ -1,4 +1,4 @@
-#tweets-container .tweet {
+.tweet {
   border: 1.5px solid #eee;
   border-radius: 2%;
   margin: 0 auto 1em auto;
@@ -6,38 +6,38 @@
   padding: 0;
   width: 90%;
   transition: .5s all ease-in-out; }
-  #tweets-container .tweet:hover {
+  .tweet:hover {
     opacity: 1;
     transition: .5s all ease-in-out; }
-  #tweets-container .tweet header {
+  .tweet header {
     background-color: #eee;
     margin: 0 auto 0 auto;
     height: 80px; }
-  #tweets-container .tweet .avatar {
+  .tweet .avatar {
     float: left;
     height: 60px;
     width: 60px;
     margin: 0.6em 0 0 0.4em; }
-  #tweets-container .tweet .name {
+  .tweet .name {
     display: inline;
     float: left;
     margin: 0 0 0 .25em;
     margin-top: 1.2em; }
-  #tweets-container .tweet .handle {
+  .tweet .handle {
     display: inline-block;
     float: right;
     margin: 2em .5em 0 0; }
-  #tweets-container .tweet .content {
+  .tweet .content {
     height: 50px;
     padding: .4em; }
-  #tweets-container .tweet .content {
+  .tweet .content {
     word-wrap: break-word; }
-  #tweets-container .tweet footer {
+  .tweet footer {
     border-top: 1.5px solid #eee;
     margin: 0;
     padding: 0 .3em; }
-  #tweets-container .tweet div {
+  .tweet div {
     display: inline-block; }
-  #tweets-container .tweet .icons {
+  .tweet .icons {
     float: right;
     margin-right: .5em; }
