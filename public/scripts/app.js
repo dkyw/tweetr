@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
 function createTweetElement(tweet) {
-  const tweetElement = $("<article>").addClass("tweet");
+  const tweetElement = $("<article>").data('id',tweet._id).addClass("tweet");
 
   //retrieve header info
   const $header = $("<header>");
-   const $avatar = $("<img>").attr('src', tweet.user.avatars.small).addClass('avatar');
+  const $avatar = $("<img>").attr('src', tweet.user.avatars.small).addClass('avatar');
   const $name = $("<h2>").text(tweet.user.name).addClass("name");
   const $handle = $("<span>").text(tweet.user.handle).addClass('handle');
   $header.append($avatar, $name, $handle);
@@ -15,20 +15,40 @@ function createTweetElement(tweet) {
 
   //retrieve footer info
   const $footer = $("<footer>");
+  const $likes = $('<span class="icons likes-counter"></span>').data('likes', tweet.likes).text(tweet.likes);
   const $time = moment(tweet.created_at).fromNow();
   const $timeStamp = $("<span>").text($time).addClass("time-stamp");
-  const $heart = $('<i class="fa fa-heart icon" aria-hidden="true">').addClass('icons');
-  const $retweet = $('<i class="fa fa-retweet icon" aria-hidden="true"></i>').addClass('icons');
-  const $flag = $('<i class="fa fa-flag icon" aria-hidden="true"></i>').addClass('icons')
-  $footer.append($timeStamp, $heart, $retweet, $flag)
+  const $heart = $('<i class="fa fa-heart like-button" aria-hidden="true" data-like="0">').addClass('icons');
+  const $retweet = $('<i class="fa fa-retweet" aria-hidden="true"></i>').addClass('icons');
+  const $flag = $('<i class="fa fa-flag" aria-hidden="true"></i>').addClass('icons')
+  $footer.append($timeStamp, $heart, $likes, $retweet, $flag)
 
   tweetElement.append($header, $body, $footer);
   return tweetElement;
 }
 
+$('#tweets-container').on('click', '.like-button', function(e) {
+  let $heart = $(this);
+  let $likesCounter = $heart.siblings('.likes-counter');
+  let $parent = $heart.parents('.tweet')
+  let tweetId = $parent.data('id');
+
+  let currentCount = $likesCounter.data('likes');
+  currentCount++;
+  $likesCounter.text(currentCount);
+  $likesCounter.data('likes', currentCount);
+
+
+
+  $.ajax({
+    url: `/tweets/${tweetId}/like`,
+    method: 'POST',
+  })
+})
+
 function renderTweets(tweets) {
   //clears the tweet container before appending tweets
-  //$('#tweets-container').empty();
+  $('#tweets-container').empty();
   for (let tweet of tweets) {
     $('#tweets-container').prepend(createTweetElement(tweet))
   }
@@ -61,7 +81,7 @@ $('form').submit(function(event) {
 
    $.ajax({
     data: $(this).serialize(),
-    url: '/tweets',
+    url: '/tweets/',
     method: 'POST'
   }).done(function() {
     loadTweets();
