@@ -11,9 +11,10 @@ const app           = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-//const MongoClient = require("mongodb").MongoClient;
-// const MONGODB_URI = "mongodb://localhost:27017/tweeter";
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = "mongodb://localhost:27017/tweeter";
+
+//env to configure local enviroment variables for dev machine
+// const MONGODB_URI = process.env.MONGODB_URI;
 const { MongoClient } = require('mongodb');
 
 //connect mongo to local host
